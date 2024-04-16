@@ -22,11 +22,6 @@ introText = {
 successText = {
     1030
 }
-failText = {
-    1023,
-    1024,
-    1025
-}
 taskText = {
     1740,
     1741
