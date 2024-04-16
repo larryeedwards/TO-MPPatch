@@ -1,7 +1,8 @@
--- MULTIPLAYER FIX DATE: April 8, 2024
--- [[NOTES: totalspritecount is unneeded from my initial observation. If anything it actually hinders gameplay!]]
+-- MULTIPLAYER FIX DATE: April 8, 2024  
+-- Revision Date: April 16, 2024
+-- Changelog: Replacing gameplay check & mission fail
 complete = 0
---totalspritecount = 4
+totalspritecount = 4
 taskcount = 4
 currenttask = 1
 introText = {
@@ -28,10 +29,18 @@ taskText = {
 }
 taskSuccess = {
     function()
-        return not gomgr.getbyoid(1688).canbreaknext
+        if (not gomgr.getbyoid(1688).canbreaknext) then
+            return true
+        else
+            return false
+        end
     end,
     function()
-        return tornadomgr.firstactivetornado:isgrabbingsprites() or tornadomgr.secondactivetornado:isgrabbingsprites()
+        if (tornadomgr.isactionmatched(4)) then
+            return true
+        else
+            return false
+        end
     end,
     function()
         if (allbroken()) then
@@ -41,29 +50,23 @@ taskSuccess = {
         end
     end,
     function()
-        return tornadomgr.firstactivetornado.firespritescollected >= 1 or
-            tornadomgr.secondactivetornado.firespritescollected >= 1
+        if (tornadomgr.getcombinedfiresprites() + spritemgr.getlivespritecount(1) >= 4) then
+            return true
+        else
+            return false
+        end
     end
 }
 
 taskFail = {
     function()
-        return tornadomgr.firstactivetornado.firespritescollected > 4 or
-            tornadomgr.secondactivetornado.firespritescollected > 4
+        return (tornadomgr.firstactivetornado.firespritescollected > 0)
     end,
     function()
-        return tornadomgr.firstactivetornado.firespritescollected > 4 or
-            tornadomgr.secondactivetornado.firespritescollected > 4
+        return (tornadomgr.firstactivetornado.firespritescollected > 0)
     end,
     function()
-        if
-            tornadomgr.firstactivetornado.firespritescollected > 4 or
-                tornadomgr.secondactivetornado.firespritescollected > 4 and not tornadomgr.isactionmatched(4)
-         then
-            return true
-        else
-            return false
-        end
+        return (tornadomgr.firstactivetornado.firespritescollected > 0)
     end,
     function()
         return false
@@ -80,7 +83,7 @@ end
 function success()
     engine.pushmode(1)
     tornadomgr.firstactivetornado.inforceshowavatarstate = true
-    tornadomgr.secondactivetornado.inforceshowavatarstate = true
+	tornadomgr.secondactivetornado.inforceshowavatarstate = true
     gomgr.getbyoid(2005).talkingtotrainer = true
     --
     if #successText > 0 then
@@ -109,7 +112,7 @@ function success()
     endwait()
     engine.popmode(1)
     tornadomgr.firstactivetornado.inforceshowavatarstate = false
-    tornadomgr.secondactivetornado.inforceshowavatarstate = false
+	tornadomgr.secondactivetornado.inforceshowavatarstate = false
     gomgr.getbyoid(2005).talkingtotrainer = false
     requestcomplete(true)
 end
@@ -118,7 +121,6 @@ function reset(text)
     --
     gomgr.getbyoid(1849):dispatchlabel("reset")
     spritemgr.resetallsprites()
-    -- tornadomgr.secondactivetornado:warp(gomgr.getbyoid(1634))
     tornadomgr.firstactivetornado:resetfirespritescollected()
     gomgr.getbyoid(1688):resetbreak()
     gomgr.getbyoid(1688):resurrect()
