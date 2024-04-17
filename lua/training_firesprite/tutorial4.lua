@@ -1,8 +1,7 @@
 -- MULTIPLAYER FIX DATE: April 8, 2024  
--- Revision Date: April 16, 2024
--- Changelog: Replacing gameplay check & mission fail
+-- Revision Date: April 17, 2024
+-- Changelog: taskFail tweaking
 complete = 0
-totalspritecount = 4
 taskcount = 4
 currenttask = 1
 introText = {
@@ -66,13 +65,16 @@ taskFail = {
         return (tornadomgr.firstactivetornado.firespritescollected > 0)
     end,
     function()
-        return (tornadomgr.firstactivetornado.firespritescollected > 0)
+        if (tornadomgr.firstactivetornado.firespritescollected > 0 or not tornadomgr.isactionmatched(4)) then
+            return true
+        else
+            return false
+        end
     end,
     function()
         return false
     end
 }
-
 function allbroken()
     return (not gomgr.getbyoid(1688).canbreaknext and not gomgr.getbyoid(1689).canbreaknext and
         not gomgr.getbyoid(1690).canbreaknext and
