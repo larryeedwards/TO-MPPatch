@@ -6,12 +6,9 @@
 end
 
 -- MULTIPLAYER FIX DATE: April 7, 2024
--- Revision Date: April 15, 2024
---[[ TODO: Singleplayer doesn't seem to like the new implementation. Look into a solution for this!]]
--- Alright, the gists of it is to seperate sprite count. Not much, but could be a solution for premature failures in the later tuts.
+-- Revision Date: April 17, 2024
+-- Changlog: Removed total sprite count. 
 complete = 0
-totalspritecountP1 = 1
-totalspritecountP2 = 1
 taskcount = 2
 currenttask = 1
 introText = {
@@ -30,13 +27,11 @@ taskSuccess = {
     function()
         return not gomgr.getbyoid(1638).canbreaknext
     end,
-    -- In theory, this'll check and see if either Zephyr or Wind Warrior exposed the Fire Flyer.
+    -- checks and sees if a single Fire Flyer has been collected by either player.
     function()
-        return tornadomgr.firstactivetornado.firespritescollected >= totalspritecountP1 or
-            tornadomgr.secondactivetornado.firespritescollected >= totalspritecountP2
+        return tornadomgr.getcombinedfiresprites() + spritemgr.getlivespritecount(1) >= 1
     end
 }
-
 function reset(text)
     --
     gomgr.getbyoid(1849):dispatchlabel("reset")
