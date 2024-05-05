@@ -1,8 +1,7 @@
 -- MULTIPLAYER FIX DATE: April 8, 2024
--- REVISION DATE: April 16, 2024
--- Changelog: Replaced firespritecount with getcombinedfiresprites.
+-- REVISION DATE: May 5, 2024
+-- Changelog: Removed spritecount
 complete = 0
-totalspritecount = 50
 taskcount = 3
 currenttask = 1
 introText = {
