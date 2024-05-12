@@ -1,6 +1,6 @@
 -- MULTIPLAYER FIX DATE: April 7, 2024
--- REVISION DATE: April 16, 2024
--- Changelog: Mission Fail tweaking
+-- REVISION DATE: May 12, 2024
+-- Changelog: Adding OID for Wind Warrior. These don't seem to do anything?
 complete = 0
 taskcount = 4
 currenttask = 1
@@ -81,6 +81,7 @@ function success()
   tornadomgr.secondactivetornado.inforceshowavatarstate = true -- Wind Warrior
 
   gomgr.getbyoid(2005).talkingtotrainer = true
+--gomgr.getbyoid(2009).talkingtotrainer = true
   --                  
   if #successText > 0 then
     gomgr.getbyoid(2021).finishonbuttonpress = false
@@ -108,6 +109,7 @@ function success()
   tornadomgr.firstactivetornado.inforceshowavatarstate = false -- Zephyr
   tornadomgr.secondactivetornado.inforceshowavatarstate = false -- Wind Warrior
   gomgr.getbyoid(2005).talkingtotrainer = false
+--gomgr.getbyoid(2009).talkingtotrainer = false
   requestcomplete(true)
 end
 

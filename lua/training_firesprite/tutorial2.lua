@@ -1,5 +1,6 @@
 -- MULTIPLAYER FIX DATE: April 7, 2024  
--- REVISION DATE: April 8, 2024                                                                                           
+-- REVISION DATE: May 12, 2024
+-- Changelog: Adding OID for Wind Warrior. Does not seem to take effect in-game. Keeping it commented out.                                                                                        
 complete = 0
 totalspritecount = 1
 taskcount = 3
@@ -131,7 +132,8 @@ function on_gameplaymoduleupdate()
 
             tornadomgr.firstactivetornado.inforceshowavatarstate = true
             tornadomgr.secondactivetornado.inforceshowavatarstate = true
-            gomgr.getbyoid(2005).talkingtotrainer = true
+            gomgr.getbyoid(2005).talkingtotrainer = true -- Zephyr
+         -- gomgr.getbyoid(2009).talkingtotrainer = true -- Wind Warrior
             engine.pushmode(1)
 
             --
@@ -162,7 +164,8 @@ function on_gameplaymoduleupdate()
             engine.popmode(1)
             tornadomgr.firstactivetornado.inforceshowavatarstate = false
             tornadomgr.secondactivetornado.inforceshowavatarstate = false
-            gomgr.getbyoid(2005).talkingtotrainer = false
+            gomgr.getbyoid(2005).talkingtotrainer = false -- Zephyr
+      --    gomgr.getbyoid(2009).talkingtotrainer = false -- Wind Warrior
             requestcomplete(true)
             return
         else

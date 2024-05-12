@@ -6,8 +6,8 @@
 end
 
 -- MULTIPLAYER FIX DATE: April 7, 2024
--- Revision Date: April 17, 2024
--- Changlog: Removed total sprite count. 
+-- Revision Date: May 12, 2024
+-- Changlog: OID Tweaking & Testing 
 complete = 0
 taskcount = 2
 currenttask = 1
@@ -125,7 +125,9 @@ function on_gameplaymoduleupdate()
             engine.pushmode(1)
             tornadomgr.firstactivetornado.inforceshowavatarstate = true -- Zephyr
             tornadomgr.secondactivetornado.inforceshowavatarstate = true -- Wind Warrior
-            gomgr.getbyoid(2005).talkingtotrainer = true
+            gomgr.getbyoid(2005).talkingtotrainer = true -- Zephyr
+		--  gomgr.getbyoid(2009).talkingtotrainer = true -- Wind Warrior - Has no effect in-game. For now, we'll just comment this out instead of just removing it!
+			
 
             --
             gomgr.getbyoid(2021).finishonbuttonpress = false
@@ -156,6 +158,7 @@ function on_gameplaymoduleupdate()
             tornadomgr.firstactivetornado.inforceshowavatarstate = false -- Zephyr
             tornadomgr.secondactivetornado.inforceshowavatarstate = false -- Wind Warrior
             gomgr.getbyoid(2005).talkingtotrainer = false
+         -- gomgr.getbyoid(2009).talkingtotrainer = false
             requestcomplete(true)
             return
         else
