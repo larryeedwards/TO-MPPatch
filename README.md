@@ -9,3 +9,5 @@ This is another issue that I have no clue how to solve. The game typically allow
 # General FAQ
 ### Do I need to install this patch to enjoy the game's multiplayer?
 Tornado Outbreak by itself offers eight playable levels that support multiplayer. Using the patch allows you to run Roadside Destruction, Training Campground, and Chicken Con Carnage all in multiplayer, bumping the total number of levels that support multiplayer from 8 to all 11 levels.
+### How does the mod work?
+The multiplayer patch works by taking the singleplayer's map launcher file and replacing it with the multiplayer supported one. This allows the level to run both in singleplayer and multiplayer. Additional tweaks are then implemented via Lua scripting.
