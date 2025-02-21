@@ -15,7 +15,7 @@ end
 function on_gameplaymoduleactive()
   rankforsilo = false
   --
-  tornadomgr.secondactivetornado:toggletpotddriver()
+  tornadomgr.secondactivetornado:toggletpotdriver()
   gomgr.getbyoid(261):dispatchlabel("weatherphase0")
   gomgr.getbyoid(264):dispatchlabel("weatherphase0")
   gomgr.getbyoid(262):dispatchlabel("weatherphase1")
