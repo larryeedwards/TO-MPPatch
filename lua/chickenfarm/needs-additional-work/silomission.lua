@@ -1,6 +1,6 @@
 -- MULTIPLAYER FIX DATE: April 19, 2024
 -- REVISION DATE: Febuary 21, 2025
--- TODO: Does the newly added check for driver/gunner work as presumed?
+-- TODO: Further research on driver and gunner
 rankforsilo = false
 
 function reset()
@@ -14,8 +14,9 @@ end
 
 function on_gameplaymoduleactive()
   rankforsilo = false
-  -- This doesn't seem to do jack. Further research on how the game tells the other player to stop being a hog is needed.
+  --[[ This currently has no effect whatsoever. For now, I'm commenting this out.
   tornadomgr.toggletpotdriver()
+--]]
  --
   gomgr.getbyoid(261):dispatchlabel("weatherphase0")
   gomgr.getbyoid(264):dispatchlabel("weatherphase0")
