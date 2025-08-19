@@ -1,8 +1,10 @@
 -- MULTIPLAYER FIX DATE: April 10, 2024
--- REVISION DATE: June 16, 2024
---[[TODO: Is there any additional changes we can make to make the co-op more enjoyable? Sharing one tornado isn't entirely ideal...]]
--- CHANGELOG: Adding experimental check for avatar2's Wind Warrior.
-haveplayertwo = false                                         
+-- REVISION DATE: August 19, 2025
+--[[ None of the current implemented checks work. There's probably something I'm doing that's making it not work. For now though, we'll currently comment out
+our previous implemented code until I can come up with a better solution.
+]]--
+-- CHANGELOG: Commented out code that doesn't work. In release, we'll probably cut these lines of code if I can't get them work.
+-- haveplayertwo = false                                         
 expandedarea = false
 rankforbarn = false
 leaveFenceText = {
@@ -21,7 +23,7 @@ function on_gameplaymoduleactive()
   gomgr.getbyoid(57):addtoworld()
   tornadomgr.showtornadorank = true
   expandedarea = false
-  
+--[[ Commented out. See Changelog for further clarification!
  -- basic check for avatar2.
 if taworld.gettornado(1) ~= nil then
     if haveplayertwo == false then
@@ -36,7 +38,7 @@ else
         gomgr.getbyoid(3550):removefromworld()
     end
 end
-  
+--]]
   --                                       
   while (tornadomgr.firstactivetornado == nil) do
 	  pause(0.1)
